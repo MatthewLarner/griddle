@@ -8,18 +8,17 @@ Griddle.prototype.iterate = function(callback) {
     }
 };
 
-function fillGrid(){
+function initialiseGrid(){
     var griddle = this;
 
     for (var row = 0; row < griddle._rows; row++) {
         if(!griddle._grid[row]) {
             griddle._grid[row] = [];
         }
+        for (var column = 0; column < this._columns; column++) {
+            griddle._grid[row][column] = null;
+        }
     }
-
-    griddle.iterate(function(row, column) {
-        griddle._grid[row][column] = null;
-    });
 }
 
 function Griddle(rows, columns) {
@@ -30,7 +29,7 @@ function Griddle(rows, columns) {
 
     griddle._grid = [];
 
-    fillGrid.bind(this)();
+    initialiseGrid.bind(this)();
 
     griddle.iterate(function(row, column) {
         griddle._grid[row][column] = null;
@@ -48,7 +47,7 @@ Griddle.prototype.rows = function(rows) {
 
     this._rows = rows;
 
-    fillGrid.bind(this)();
+    initialiseGrid.bind(this)();
 
     return this;
 };
@@ -64,7 +63,7 @@ Griddle.prototype.columns = function(columns) {
 
     this._columns = columns;
 
-    fillGrid.bind(this)();
+    initialiseGrid.bind(this)();
 
 
     return this;
