@@ -68,5 +68,23 @@ Griddle.prototype.columns = function(columns) {
 
     return this;
 };
+Griddle.prototype.grid = function() {
+
+};
+
+Griddle.prototype.getRow = function(rowNumber) {
+    return this._grid[rowNumber];
+};
+
+Griddle.prototype.getColumn = function(columnNumber) {
+    var column = [];
+
+    for (var row = 0; row < this._rows; row++) {
+        column.push(this._grid[row][columnNumber]);
+    }
+
+    return column;
+};
+
 
 module.exports = Griddle;
