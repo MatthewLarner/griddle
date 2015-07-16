@@ -17,8 +17,11 @@ function initialiseGrid(){
         }
         for (var column = 0; column < this._columns; column++) {
             griddle._grid[row][column] = null;
+            griddle._grid[row] = griddle._grid[row].slice(0, griddle._columns);
         }
     }
+
+    griddle._grid = griddle._grid.slice(0, griddle._rows);
 }
 
 function Griddle(rows, columns) {
@@ -68,8 +71,15 @@ Griddle.prototype.columns = function(columns) {
 
     return this;
 };
-Griddle.prototype.grid = function() {
 
+Griddle.prototype.grid = function(mesh) {
+    if (!Array.isArray(mesh) && Array.isArray(mesh[0])) {
+        throw 'must be an array of arrays';
+    } else {
+        this._grid = mesh;
+        this._rows = mesh.length;
+        this._columns = mesh[0].length;
+    }
 };
 
 Griddle.prototype.getRow = function(rowNumber) {
@@ -85,6 +95,5 @@ Griddle.prototype.getColumn = function(columnNumber) {
 
     return column;
 };
-
 
 module.exports = Griddle;
