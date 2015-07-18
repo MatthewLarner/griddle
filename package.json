@@ -1,0 +1,14 @@
+{
+  "name": "griddle",
+  "version": "1.0.0",
+  "description": "Create a data grid",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests"
+  },
+  "author": "Matt Larner <matt.larner.dev@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "tape": "^4.0.0"
+  }
+}
