@@ -26,7 +26,17 @@ test('get correct row', function(t) {
         expectedResult = [4,5];
 
     grid._grid = data;
-    t.deepEqual(grid.getRow(1), expectedResult);
+    t.deepEqual(grid.row(1), expectedResult);
+});
+
+test('set row', function(t) {
+    t.plan(2);
+
+    var grid = new Griddle(2,2),
+        row = [1,2];
+
+    t.deepEqual(grid.row(1, row).row(1), row);
+    t.notDeepEqual(grid.row(0), row);
 });
 
 test('get correct column', function(t) {

@@ -82,8 +82,24 @@ Griddle.prototype.grid = function(mesh) {
     }
 };
 
-Griddle.prototype.getRow = function(rowNumber) {
-    return this._grid[rowNumber];
+Griddle.prototype.row = function(rowNumber, data) {
+    if(!arguments.length) {
+        throw 'rowNumber required';
+    }
+
+    if(arguments.length === 1) {
+        return this._grid[rowNumber];
+    }
+
+    if(!Array.isArray(data)) {
+        throw 'data must be an array';
+    }
+
+    for (var column = 0; column < this._columns; column++) {
+        this._grid[rowNumber][column] = data[column];
+    }
+
+    return this;
 };
 
 Griddle.prototype.getColumn = function(columnNumber) {
@@ -94,6 +110,19 @@ Griddle.prototype.getColumn = function(columnNumber) {
     }
 
     return column;
+};
+Griddle.prototype.cell = function(rowNumber, columnNumber, data) {
+    if(arguments.length < 2) {
+        throw 'Row and column numbers required';
+    }
+
+    if(arguments.length === 2) {
+        return this._grid[rowNumber][columnNumber];
+    }
+
+    this._grid[rowNumber][columnNumber] = data;
+
+    return this;
 };
 
 module.exports = Griddle;
