@@ -7,5 +7,8 @@
     "test": "node tests"
   },
   "author": "Matt Larner <matt.larner.dev@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "tape": "^4.0.0"
+  }
 }
