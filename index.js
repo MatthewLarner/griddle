@@ -102,14 +102,30 @@ Griddle.prototype.row = function(rowNumber, data) {
     return this;
 };
 
-Griddle.prototype.getColumn = function(columnNumber) {
-    var column = [];
-
-    for (var row = 0; row < this._rows; row++) {
-        column.push(this._grid[row][columnNumber]);
+Griddle.prototype.column = function(columnNumber, data) {
+    if(!arguments.length) {
+        throw 'columnNumber required';
     }
 
-    return column;
+    var row;
+
+    if(arguments.length === 1) {
+        var column = [];
+
+        for (row = 0; row < this._rows; row++) {
+            column.push(this._grid[row][columnNumber]);
+        }
+
+        return column;
+    }
+
+    if(!Array.isArray(data)) {
+        throw 'data must be an array';
+    }
+
+    for (row = 0; row < this._rows; row++) {
+        this._grid[row][columnNumber] = data[row];
+    }
 };
 Griddle.prototype.cell = function(rowNumber, columnNumber, data) {
     if(arguments.length < 2) {

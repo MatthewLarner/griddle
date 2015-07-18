@@ -47,5 +47,5 @@ test('get correct column', function(t) {
         expectedResult = [3,5];
 
     grid._grid = data;
-    t.deepEqual(grid.getColumn(1), expectedResult);
+    t.deepEqual(grid.column(1), expectedResult);
 });
